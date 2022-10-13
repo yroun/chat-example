@@ -1,0 +1,24 @@
+{
+  "name": "chat-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev -p 4444"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.2",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.8.5",
+    "@types/react": "18.0.21",
+    "@yroun/chat": "^0.1.33",
+    "typescript": "4.8.4"
+  }
+}
