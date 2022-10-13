@@ -7,11 +7,11 @@ export default () => {
   const [chatClient] = useState(new YROUNChatClient());
   const [smartcenterUuid, setSmartcenterUuid] = useState("yroun");
   // const [chatUuid, setChatUuid] = useState("sc-yroun-us-sok6lbc8q2wn");
+  const [apiKey, setApiKey] = useState("qdq000anq051qxw4x91vd10kvf0waadnr2w5");
+  const [userUuid, setUserUuid] = useState("1hruaa2t830hd");
+  const [otherUserUuid, setOtherUserUuid] = useState("1ji50k1692jw4");
   const [chatUuid, setChatUuid] = useState("");
-  const [userUuid, setUserUuid] = useState("vb6unjqee1q1");
-  const [otherUserUuid, setOtherUserUuid] = useState("sok6lbc8q2wn");
   const [chatClients, setChatClients] = useState("");
-  const [apiKey, setApiKey] = useState("qhhs8wawm0ddt4fjstd9n1icurmeds3fnnfo");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     chatClient.start({
@@ -21,7 +21,7 @@ export default () => {
       localVideoRef,
       remoteVideoRef,
     });
-  }, []);
+  }, [userUuid, apiKey]);
   const emptyString = useMemo(() => {
     return "(empty)";
   }, []);
@@ -30,15 +30,18 @@ export default () => {
       <div>{loading}</div>
       <div>
         API Key
-        <input value={apiKey} />
+        <input value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
       </div>
       <div style={{ margin: "14px 0 0" }}>
         smartcenter uuid
-        <input defaultValue={smartcenterUuid} />
+        <input
+          defaultValue={smartcenterUuid}
+          onChange={(e) => setSmartcenterUuid(e.target.value)}
+        />
       </div>
       <div>
         user1 uuid
-        <input value={userUuid} />
+        <input value={userUuid} onChange={(e) => setUserUuid(e.target.value)} />
       </div>
       1.{" "}
       <button
@@ -62,7 +65,10 @@ export default () => {
       </div>
       <div>
         user2 uuid
-        <input value={otherUserUuid} />
+        <input
+          value={otherUserUuid}
+          onChange={(e) => setOtherUserUuid(e.target.value)}
+        />
       </div>
       2.{" "}
       <button
