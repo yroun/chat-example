@@ -11,11 +11,10 @@ export default () => {
   const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(new YROUNChatClient());
   const [chatUuid, setChatUuid] = useState("sc-yroun-us-sok6lbc8q2wn");
-  const [userUuid, setUserUuid] = useState("sok6lbc8q2wn");
+  const [userUuid, setUserUuid] = useState("t4vq0cxie242");
   const [userApiKey, setUserApiKey] = useState(
-    "r1ieq1yg850j1je9yak8o7d4js4unle7tps9u"
+    "skmtro8x74msqe3ujr4h9et01iexszp2k2uzl"
   );
-  const micEnabled = chatClient.micEnabled();
   return (
     <div>
       <div>{loading}</div>
@@ -66,26 +65,6 @@ export default () => {
       >
         disconnect
       </button>
-      <button
-        onClick={() => {
-          chatClient.callRtc();
-        }}
-      >
-        call
-      </button>
-      <div>
-        <button
-          onClick={() => {
-            if (micEnabled) {
-              chatClient.disableMic();
-            } else {
-              chatClient.enableMic();
-            }
-          }}
-        >
-          {micEnabled ? "mic on" : "mic off"}
-        </button>
-      </div>
       <div style={{ width: "600px" }}>
         <YROUNChatRtcControllerView chatClient={chatClient} />
       </div>
