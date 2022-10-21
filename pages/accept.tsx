@@ -1,28 +1,35 @@
-import { YROUNChatClient } from "@yroun/chat";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  VideoElementDictionary,
+  YROUNChatClient,
+  YROUNChatMessagesView,
+  YROUNChatRtcControllerView,
+  // } from "@yroun/chat";
+} from "../../chat";
+import { useEffect, useMemo, useState } from "react";
+import { YROUNChatParticipantView, YROUNChatUserType } from "@yroun/chat";
 
 export default () => {
-  const localVideoRef = useRef(null);
-  const remoteVideoRef = useRef(null);
+  const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(new YROUNChatClient());
-  const [smartcenterUuid, setSmartcenterUuid] = useState("yroun");
   // const [chatUuid, setChatUuid] = useState("sc-yroun-us-sok6lbc8q2wn");
-  const [apiKey, setApiKey] = useState("qdq000anq051qxw4x91vd10kvf0waadnr2w5");
-  const [userUuid, setUserUuid] = useState("1hruaa2t830hd");
-  const [otherUserUuid, setOtherUserUuid] = useState("1ji50k1692jw4");
+  const [smartcenterUuid, setSmartcenterUuid] = useState("yroun");
+  const [adminUserUuid, setAdminUserUuid] = useState<string>("vb6unjqee1q1");
+  const [clients, setClients] = useState<any[]>([]);
+  // const [apiKey, setApiKey] = useState("qdq000anq051qxw4x91vd10kvf0waadnr2w5");
+  const [apiKey, setApiKey] = useState("rh7r64an6p0xt8f5dibh74v91jyjcllw3o8q8");
+  const [userEmail, setUserEmail] = useState("yrounlabs@naver.com");
+  const [otherUserEmail, setOtherUserEmail] = useState("yroun@naver.com");
   const [chatUuid, setChatUuid] = useState("");
   const [otherUserApiKey, setOtherUserApiKey] = useState("");
   const [chatClients, setChatClients] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     chatClient.start({
-      userUid: userUuid,
+      userUid: adminUserUuid,
       userPasscode: apiKey,
       setLoading,
-      localVideoRef,
-      remoteVideoRef,
     });
-  }, [userUuid, apiKey]);
+  }, [adminUserUuid, apiKey]);
   const emptyString = useMemo(() => {
     return "(empty)";
   }, []);
@@ -30,122 +37,126 @@ export default () => {
     <div>
       <div>{loading}</div>
       <div>
-        API Key
-        <input value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
-      </div>
-      <div style={{ margin: "14px 0 0" }}>
         smartcenter uuid
         <input
-          value={smartcenterUuid}
+          defaultValue={smartcenterUuid}
           onChange={(e) => setSmartcenterUuid(e.target.value)}
         />
       </div>
       <div>
-        user1 uuid
-        <input value={userUuid} onChange={(e) => setUserUuid(e.target.value)} />
+        ADMIN USER UUID
+        <input
+          value={adminUserUuid}
+          onChange={(e) => setAdminUserUuid(e.target.value)}
+        />
       </div>
-      4.{" "}
+      <div>
+        API Key
+        <input value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
+      </div>
+      <div style={{ margin: "14px", color: "red" }}>
+        chat uuid : {chatUuid || emptyString}
+      </div>
+      <div style={{ margin: "14px", color: "red" }}>
+        chat clients : {chatClients || emptyString}
+      </div>
+      <div style={{ margin: "14px", color: "red" }}>
+        user2 API Key : {otherUserApiKey}
+      </div>
+      <div>
+        user1 email
+        <input
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
+        />
+      </div>
+      1.{" "}
       <button
         onClick={async () => {
           const res: any = await chatClient
-            .createSmartcenterChat(smartcenterUuid, userUuid)
+            .createSmartcenterChat(smartcenterUuid, userEmail)
             .catch(console.error);
           const chat = res?.data || {};
+          console.log(chat);
           setChatUuid(chat.uid);
-          await chatClient.turnChatOnByUuid(
-            chat.uid,
-            localVideoRef,
-            remoteVideoRef
-          );
+          await chatClient.turnChatOnByUuid(chat.uid, videoElements);
         }}
       >
         get or create chat
       </button>
-      <div style={{ margin: "14px", color: "red" }}>
-        chat uuid : {chatUuid || emptyString}
-      </div>
       <div>
-        user2 uuid
+        user2 email
         <input
-          value={otherUserUuid}
-          onChange={(e) => setOtherUserUuid(e.target.value)}
+          value={otherUserEmail}
+          onChange={(e) => setOtherUserEmail(e.target.value)}
         />
       </div>
-      5.{" "}
+      2.{" "}
       <button
         onClick={async () => {
           const res: any = await chatClient.addSmartcenterChatClient(
             chatUuid,
-            otherUserUuid
+            otherUserEmail
           );
           const chat = res?.data || {};
+          setClients(chat.clients);
           setChatClients(
-            (chat.clients || []).map((client) => client.userUid).join(", ")
+            (chat.clients || [])
+              .map((client) => `${client.uid}(${client.email})`)
+              .join(", ")
           );
         }}
       >
         add client
       </button>
-      <div style={{ margin: "14px", color: "red" }}>
-        chat clients : {chatClients || emptyString}
-      </div>
-      6.{" "}
+      <div />
+      3.{" "}
       <button
         onClick={async () => {
-          const res: any = await chatClient.getChatUserApiKeyForAdmin(
-            smartcenterUuid,
-            otherUserUuid
-          );
-          const othApiKey = res?.data?.value;
-          setOtherUserApiKey(othApiKey);
-          chatClient.start({
-            userUid: otherUserUuid,
-            userPasscode: othApiKey,
-            setLoading,
-            localVideoRef,
-            remoteVideoRef,
-          });
+          for (const client of clients) {
+            if (client.email !== otherUserEmail) {
+              continue;
+            }
+            const res: any = await chatClient.getChatUserApiKeyForAdmin(
+              smartcenterUuid,
+              client.uid
+            );
+            const apiKey = res?.data?.value;
+            setOtherUserApiKey(apiKey);
+            await chatClient.start({
+              userType: YROUNChatUserType.OPEN_API,
+              userUid: client.uid,
+              userPasscode: apiKey,
+              setLoading,
+            });
+            await chatClient.turnChatOnByUuid(chatUuid, videoElements)
+          }
         }}
       >
         get User2 Api Key
       </button>
-      <div style={{ margin: "14px", color: "red" }}>
-        user2 API Key : {otherUserApiKey}
+      <div style={{ width: "600px" }}>
+        <YROUNChatRtcControllerView chatClient={chatClient} />
       </div>
-      <div style={{ marginTop: "32px" }}>
-        <button
-          onClick={async () => {
-            await chatClient.acceptRtc();
-          }}
-        >
-          accept
-        </button>
-        <button
-          onClick={async () => {
-            await chatClient.declineRtc();
-          }}
-        >
-          decline
-        </button>
-      </div>
-      <div>Local</div>
+      {(clients || []).map((client: any) => {
+        // if (userEmail === client.email) {
+        //   return <div />;
+        // }
+        return (
+          <YROUNChatParticipantView
+            key={`participant-${client.uid}`}
+            ref={(el: HTMLVideoElement) => (videoElements[client.uid] = el)}
+            chatClient={chatClient}
+            participant={client}
+          />
+        );
+      })}
       <div>
-        <video
-          ref={localVideoRef}
-          autoPlay={true}
-          playsInline={true}
-          width={100}
-          style={{ background: "red" }}
-        />
-      </div>
-      <div>Remote</div>
-      <div>
-        <video
-          ref={remoteVideoRef}
-          autoPlay={true}
-          playsInline={true}
-          width={100}
-          style={{ background: "blue" }}
+        <YROUNChatMessagesView
+          containerStyle={{
+            flex: "0 0 100%",
+          }}
+          chatClient={chatClient}
         />
       </div>
     </div>
