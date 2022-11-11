@@ -7,20 +7,22 @@ import {
 import { useState } from "react";
 
 export default () => {
-  const [loading, setLoading] = useState(false);
-  const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(new YROUNChatClient());
-  const [chatUuid, setChatUuid] = useState("sc-yroun-us-sok6lbc8q2wn");
-  const [userUuid, setUserUuid] = useState("sok6lbc8q2wn");
+  const [videoElements] = useState<VideoElementDictionary>({});
+  const [loading, setLoading] = useState(false);
+  const [chatUuid, setChatUuid] = useState(
+    "sc-yroun-1667197742924-urp5gby5rskj"
+  );
+  const [userUuid, setUserUuid] = useState("1hruaa2t830hd");
   const [userApiKey, setUserApiKey] = useState(
-    "r1ieq1yg850j1je9yak8o7d4js4unle7tps9u"
+    "s1gn3khy9r93urpo30llb7eavbnhdlb600mx"
   );
   const micEnabled = chatClient.micEnabled();
   return (
     <div>
       <div>{loading}</div>
       <div>
-        smartcenter uuid
+        chat uuid
         <input
           defaultValue={chatUuid}
           onChange={(e) => setChatUuid(e.target.value)}
@@ -48,9 +50,12 @@ export default () => {
             chatClient.startRtc({
               chatUuid,
               userUuid,
-              userPasscode: userApiKey,
+              passcode: userApiKey,
               videoElements,
               setLoading,
+              onRtcEnd: () => {
+                console.log("rtc ended");
+              },
             });
           } else {
             console.error("not enough information");
@@ -76,6 +81,20 @@ export default () => {
       <div>
         <button
           onClick={() => {
+            chatClient.setVolumeUp();
+          }}
+        >
+          up
+        </button>
+        <button
+          onClick={() => {
+            chatClient.setVolumeDown();
+          }}
+        >
+          up
+        </button>
+        <button
+          onClick={() => {
             if (micEnabled) {
               chatClient.disableMic();
             } else {
@@ -87,7 +106,73 @@ export default () => {
         </button>
       </div>
       <div style={{ width: "600px" }}>
-        <YROUNChatRtcControllerView chatClient={chatClient} />
+        <YROUNChatRtcControllerView
+          chatClient={chatClient}
+          containerStyle={{
+            background: "whitesmoke",
+            padding: "14px",
+          }}
+          callCancelGuide={{
+            title: "전화거는 중...",
+            style: {
+              color: "black",
+              fontSize: "14px",
+            },
+          }}
+          callCancel={{
+            title: "취소",
+            style: {
+              fontSize: "14px",
+            },
+            onClick: () => {
+              console.log("취소했습니다");
+            },
+          }}
+          callAcceptGuide={{
+            title: "전화가 왔습니다",
+            style: {
+              color: "black",
+              fontSize: "14px",
+            },
+          }}
+          callAccept={{
+            title: "받기",
+            style: {
+              backgroundColor: "lightseagreen",
+              fontSize: "14px",
+            },
+            onClick: () => {
+              console.log("받았습니다");
+            },
+          }}
+          callDecline={{
+            title: "거절",
+            style: {
+              backgroundColor: "indianred",
+              fontSize: "14px",
+            },
+            onClick: () => {
+              console.log("거절했습니다");
+            },
+          }}
+          callEndGuide={{
+            title: "통화중",
+            style: {
+              backgroundColor: "indianred",
+              fontSize: "14px",
+            },
+          }}
+          callEnd={{
+            title: "끝내기",
+            style: {
+              backgroundColor: "indianred",
+              fontSize: "14px",
+            },
+            onClick: () => {
+              console.log("끝냈습니다");
+            },
+          }}
+        />
       </div>
       <video
         ref={(el: HTMLVideoElement) => (videoElements[userUuid] = el)}
@@ -117,12 +202,18 @@ export default () => {
       <div>
         <button
           onClick={() => {
-            chatClient.sendUserMessage("test message");
+            chatClient.sendMessage("test message");
           }}
         >
           create message
         </button>
-        <YROUNChatMessagesView chatClient={chatClient} />
+        <YROUNChatMessagesView
+          chatClient={chatClient}
+          usernames={{
+            "1hruaa2t830hd": "me",
+            "1ib0ejkpl70hh": "somebody",
+          }}
+        />
       </div>
     </div>
   );
