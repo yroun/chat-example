@@ -7,9 +7,9 @@ import {
 import { useState } from "react";
 
 export default () => {
-  const [chatClient] = useState(new YROUNChatClient());
-  const [videoElements] = useState<VideoElementDictionary>({});
   const [loading, setLoading] = useState(false);
+  const [videoElements] = useState<VideoElementDictionary>({});
+  const [chatClient] = useState(new YROUNChatClient());
   const [chatUuid, setChatUuid] = useState(
     "sc-yroun-1667197742924-urp5gby5rskj"
   );
@@ -53,6 +53,9 @@ export default () => {
               passcode: userApiKey,
               videoElements,
               setLoading,
+              onDisabled: () => {
+                console.log("chat disbled");
+              },
               onRtcEnd: () => {
                 console.log("rtc ended");
               },
@@ -79,20 +82,6 @@ export default () => {
         call
       </button>
       <div>
-        <button
-          onClick={() => {
-            chatClient.setVolumeUp();
-          }}
-        >
-          up
-        </button>
-        <button
-          onClick={() => {
-            chatClient.setVolumeDown();
-          }}
-        >
-          up
-        </button>
         <button
           onClick={() => {
             if (micEnabled) {

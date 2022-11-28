@@ -2,14 +2,14 @@ import {
   VideoElementDictionary,
   YROUNChatClient,
   YROUNChatMessagesView,
-  YROUNChatRtcControllerView
+  YROUNChatRtcControllerView,
 } from "@yroun/chat";
 import { useState } from "react";
 
 export default () => {
-  const [chatClient] = useState(new YROUNChatClient());
-  const [videoElements] = useState<VideoElementDictionary>({});
   const [loading, setLoading] = useState(false);
+  const [videoElements] = useState<VideoElementDictionary>({});
+  const [chatClient] = useState(new YROUNChatClient());
   const [chatUuid, setChatUuid] = useState(
     "sc-yroun-1667197742924-urp5gby5rskj"
   );
