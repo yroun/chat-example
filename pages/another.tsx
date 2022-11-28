@@ -42,34 +42,33 @@ export default () => {
         />
       </div>
       <div />
-      <button
-        onClick={() => {
-          if (chatUuid && userUuid && userApiKey && setLoading) {
-            // @ts-ignore
-            chatClient.startRtc({
-              chatUuid,
-              userUuid,
-              passcode: userApiKey,
-              videoElements,
-              setLoading,
-              onRtcEnd: () => {
-                console.log("rtc ended");
-              },
-            });
-          } else {
-            console.error("not enough information");
-          }
-        }}
-      >
-        connect
-      </button>
-      <button
-        onClick={() => {
-          chatClient.stop();
-        }}
-      >
-        disconnect
-      </button>
+      <div>
+        RTC
+        <button
+          onClick={() => {
+            if (chatUuid && userUuid && userApiKey && setLoading) {
+              // @ts-ignore
+              chatClient.prepareRtc({
+                chatUuid,
+                userUuid,
+                passcode: userApiKey,
+                videoElements,
+                setLoading,
+                onDisabled: () => {
+                  console.log("chat disbled");
+                },
+                onRtcEnd: () => {
+                  console.log("rtc ended");
+                },
+              });
+            } else {
+              console.error("not enough information");
+            }
+          }}
+        >
+          prepare
+        </button>
+      </div>
       <div style={{ width: "600px" }}>
         <YROUNChatRtcControllerView
           chatClient={chatClient}
