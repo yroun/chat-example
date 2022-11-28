@@ -5,11 +5,16 @@ import {
   YROUNChatRtcControllerView,
 } from "@yroun/chat";
 import { useState } from "react";
+import { YROUNChatMessageType } from "@yroun/chat";
 
 export default () => {
   const [loading, setLoading] = useState(false);
   const [videoElements] = useState<VideoElementDictionary>({});
-  const [chatClient] = useState(new YROUNChatClient());
+  const [chatClient] = useState(
+    new YROUNChatClient({
+      filterChatMessageTypes: [YROUNChatMessageType.DEFAULT],
+    })
+  );
   const [chatUuid, setChatUuid] = useState(
     "sc-yroun-1667197742924-urp5gby5rskj"
   );
@@ -194,6 +199,11 @@ export default () => {
         </button>
         <YROUNChatMessagesView
           chatClient={chatClient}
+          containerStyle={
+            {
+              // background: 'red'
+            }
+          }
           usernames={{
             "1hruaa2t830hd": "me",
             "1ib0ejkpl70hh": "somebody",
