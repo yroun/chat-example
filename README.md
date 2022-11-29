@@ -84,7 +84,7 @@ const [chatClient] = useState(new YROUNChatClient());
   </div>
 ```
 
-### Handling Media Device Permissions
+### Handling media device permissions
 
 - Interfaces
 ```
@@ -118,7 +118,7 @@ useEffect(() => {
   ...
 }, []);
 ```
-- Handling events of permission requests denied such as Camera or Audio
+### Handling media device permission exceptions
 ```
 chatClient.connect({
   chatUuid,
