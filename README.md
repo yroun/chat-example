@@ -5,7 +5,7 @@
 ## Table of Contents
 - [Install](#install)
 - [Guide](#guide)
-- [Code Example](#code-example)
+- [Code Examples](#code-examples)
 - [Components](#components)
 - [Usages](#usages)
   - [ChatClient preparing RTC with connecting with video/audio HTML elements](#chatclient-preparing-rtc-with-connecting-with-video-or-audio-html-elements)
@@ -26,9 +26,7 @@ npm i @yroun/chat@latest
 
 [https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
 
-## Code Example
-
-You can see various usage examples in these files
+## Code Examples
 
 #### Run
 ```
@@ -38,6 +36,8 @@ $ npm run dev
 #### Files
 - [./pages/index.tsx](pages/index.tsx)
 - [./pages/another.tsx](pages/another.tsx)
+
+You can see various usage examples in these files
 
 ## Components
 
