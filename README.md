@@ -4,14 +4,18 @@
 
 ## Table of Contents
 - [Install](#install)
+- [Guide](#guide)
+- [Code Example](#code-example)
 - [Components](#components)
+- [Usages](#usages)
+- [Styling](#styling)
 
 ##Install
 ```
 npm i @yroun/chat@latest
 ```
 
-## Develpment Guide
+## Guide
 
 [https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
 
@@ -47,7 +51,7 @@ const [chatClient] = useState(new YROUNChatClient());
 <YROUNChatMessagesView chatClient={chatClient} />
 ```
 
-## Examples
+## Usages
 
 ### ChatClient preparing RTC
 ```
