@@ -67,7 +67,7 @@ useEffect(() => {
   ...
 }, []);
 ```
-- Handling Permission Denied Events
+- Handling events of permission requests denied such as Camera or Audio
 ```
 chatClient.connect({
   chatUuid,
