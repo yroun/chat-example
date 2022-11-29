@@ -7,17 +7,26 @@
 npm i @yroun/chat@latest
 ```
 
+## Develpment Guide
+
+[https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
+
 ## Code Example
 
-You can check more options such as styling or callback in the example code
+You can see various usage examples in these files
 
+### Run
 ```
-./pages/index.tsx
+$ npm run dev
 ```
+
+### Files
+- [./pages/index.tsx](pages/index.tsx)
+- [./pages/another.tsx](pages/another.tsx)
 
 ## Components
 
-Major components
+The below are the main components
 
 ### Chat Client
 ```
