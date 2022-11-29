@@ -2,7 +2,11 @@
 
 @yroun/chat
 
-## Install
+## Table of Contents
+- [Install](#install)
+- [Components](#components)
+
+##Install
 ```
 npm i @yroun/chat@latest
 ```
