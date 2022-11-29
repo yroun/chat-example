@@ -7,9 +7,9 @@
 - [Guide](#guide)
 - [Code Examples](#code-examples)
 - [Components](#components)
-   - [Chat Client](#Chat-Client)
-   - [Chat Messages View](#Chat-Messages-View)
-   - [Chat RTC Controller View](#Chat-RTC-Controller-View)
+  - [Chat Client](#Chat-Client)
+  - [Chat Messages View](#Chat-Messages-View)
+  - [Chat RTC Controller View](#Chat-RTC-Controller-View)
 - [Usages](#usages)
   - [ChatClient preparing RTC with connecting with video/audio HTML elements](#chatclient-preparing-rtc-with-connecting-with-video-or-audio-html-elements)
   - [Send Message](#send-message)
@@ -27,7 +27,7 @@ npm i @yroun/chat@latest
 
 ## Guide
 
-[https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://www.notion.so/yroun/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
+[https://yroun.notion.site/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://yroun.notion.site/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
 
 ## Code Examples
 
