@@ -161,3 +161,91 @@ chatClient.connect({
   },
 });
 ```
+
+## Styling
+
+### YROUNChatMessagesView
+```
+<YROUNChatMessagesView
+  chatClient={chatClient}
+  containerStyle={{
+    // CSS Properties
+    background: 'gray'
+  }}
+  usernames={{
+    "id1": "one",
+    "id2": "another",
+  }}
+/>
+```
+
+### YROUNChatRtcControllerView
+```
+<YROUNChatRtcControllerView
+  chatClient={chatClient}
+  containerStyle={{
+    background: "whitesmoke",
+    padding: "14px",
+  }}
+  callCancelGuide={{
+    title: "전화거는 중...",
+    style: {
+      color: "black",
+      fontSize: "14px",
+    },
+  }}
+  callCancel={{
+    title: "취소",
+    style: {
+      fontSize: "14px",
+    },
+    onClick: () => {
+      console.log("취소했습니다");
+    },
+  }}
+  callAcceptGuide={{
+    title: "전화가 왔습니다",
+    style: {
+      color: "black",
+      fontSize: "14px",
+    },
+  }}
+  callAccept={{
+    title: "받기",
+    style: {
+      backgroundColor: "lightseagreen",
+      fontSize: "14px",
+    },
+    onClick: () => {
+      console.log("받았습니다");
+    },
+  }}
+  callDecline={{
+    title: "거절",
+    style: {
+      backgroundColor: "indianred",
+      fontSize: "14px",
+    },
+    onClick: () => {
+      console.log("거절했습니다");
+    },
+  }}
+  callEndGuide={{
+    title: "통화중",
+    style: {
+      backgroundColor: "indianred",
+      fontSize: "14px",
+    },
+  }}
+  callEnd={{
+    title: "끝내기",
+    style: {
+      backgroundColor: "indianred",
+      fontSize: "14px",
+    },
+    onClick: () => {
+      console.log("끝냈습니다");
+    },
+  }}
+/>
+```
