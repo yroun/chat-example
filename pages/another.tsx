@@ -4,7 +4,7 @@ import {
   YROUNChatMessagesView,
   YROUNChatRtcControllerView,
 } from "@yroun/chat";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { YROUNChatMessageType } from "@yroun/chat";
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
   const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(
     new YROUNChatClient({
-      filterChatMessageTypes: [YROUNChatMessageType.DEFAULT],
+      filterChatMessageTypes: [YROUNChatMessageType.DEFAULT]
     })
   );
   const [chatUuid, setChatUuid] = useState(
@@ -22,6 +22,24 @@ export default () => {
   const [userApiKey, setUserApiKey] = useState(
     "t8f78z5eqq7tsl68hz66v4gxuvjnrdpa7rjp"
   );
+
+  useEffect(() => {
+    chatClient.getPermissionAudio().then((permission) => {
+      console.log(permission);
+      permission.onchange = (e) => {
+        console.log(permission)
+        console.log(e)
+      }
+    });
+    chatClient.getPermissionVideo().then((permission) => {
+      console.log(permission);
+      permission.onchange = (e) => {
+        console.log(permission)
+        console.log(e)
+      }
+    });
+  }, []);
+
   return (
     <div>
       <div>{loading}</div>
@@ -65,6 +83,13 @@ export default () => {
                 onRtcEnd: () => {
                   console.log("rtc ended");
                 },
+                onGetUserMedia: () => {
+                  console.warn('media success')
+                },
+                onGetUserMediaError: (error: any) => {
+                  console.warn("permission denied");
+                  console.warn(error);
+                }
               });
             } else {
               console.error("not enough information");

@@ -3,8 +3,8 @@ import {
   YROUNChatClient,
   YROUNChatMessagesView,
   YROUNChatRtcControllerView,
-} from "@yroun/chat";
-import { useState } from "react";
+  } from "@yroun/chat";
+import { useEffect, useState } from "react";
 import { YROUNChatMessageType } from "@yroun/chat";
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
   const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(
     new YROUNChatClient({
-      filterChatMessageTypes: [YROUNChatMessageType.DEFAULT],
+      filterChatMessageTypes: [YROUNChatMessageType.DEFAULT]
     })
   );
   const [chatUuid, setChatUuid] = useState(
@@ -23,6 +23,24 @@ export default () => {
     "s1gn3khy9r93urpo30llb7eavbnhdlb600mx"
   );
   const micEnabled = chatClient.micEnabled();
+
+  useEffect(() => {
+    chatClient.getPermissionAudio().then((permission) => {
+      console.log(permission);
+      permission.onchange = (e) => {
+        console.log(permission.state === 'denied')
+        console.log(e)
+      }
+    });
+    chatClient.getPermissionVideo().then((permission) => {
+      console.log(permission);
+      permission.onchange = (e) => {
+        console.log(permission)
+        console.log(e)
+      }
+    });
+  }, []);
+
   return (
     <div>
       <div>{loading}</div>
@@ -61,11 +79,18 @@ export default () => {
                 videoElements,
                 setLoading,
                 onDisabled: () => {
-                  console.log("chat disbled");
+                  console.warn("chat disbled");
                 },
                 onRtcEnd: () => {
-                  console.log("rtc ended");
+                  console.warn("rtc ended");
                 },
+                onGetUserMedia: () => {
+                  console.warn('media success')
+                },
+                onGetUserMediaError: (error: any) => {
+                  console.warn("permission denied");
+                  console.warn(error);
+                }
               });
             } else {
               console.error("not enough information");
