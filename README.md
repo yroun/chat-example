@@ -9,7 +9,8 @@
 - [Components](#components)
 - [Usages](#usages)
   - [Send Message](#send-message)
-  -[ChatClient-preparing-RTC-with-connecting-with-video/audio-HTML-elements](#chatclient-preparing-rtc-with-connecting-with-video/audio-html-elements)
+    [ChatClient preparing RTC with connecting with video/audio HTML elements](#chatclient-preparing-rtc-with-connecting-with-video-or-audio-html-elements)
+  - [Handling media device permissions](#handling-media-device-permissions)
 - [Styling](#styling)
   - [Show Default Messages Only](#show-default-message-only)
   - [YROUNChatMessagesView](#yrounchatmessagesview)
@@ -63,7 +64,7 @@ const [chatClient] = useState(new YROUNChatClient());
 chatClient.sendMessage("Hello");
 ```
 
-### ChatClient preparing RTC with connecting with video/audio HTML elements
+### ChatClient preparing RTC with connecting with video or audio HTML elements
 ```
   const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(new YROUNChatClient({}));
