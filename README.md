@@ -36,11 +36,33 @@ const [chatClient] = useState(new YROUNChatClient());
 
 ## Examples
 
+### ChatClient preparing RTC
+```
+chatClient.prepareRtc({
+  // required
+  chatUuid,
+  userUuid,
+  passcode: userApiKey,
+  videoElements,
+  setLoading,
+  // optional
+  onDisabled,
+  onRtcEnd,
+  onGetUserMedia,
+  onGetUserMediaError
+});
+```
+
 ### Show default message only
 ```
 const [chatClient] = useState(new YROUNChatClient({
   filterChatMessageTypes: [YROUNChatMessageType.DEFAULT]
 }));
+```
+
+### Send Message
+```
+chatClient.sendMessage("Hello");
 ```
 
 ### Get ChatClient connected with video/audio HTML elements for RTC
@@ -90,8 +112,6 @@ const [chatClient] = useState(new YROUNChatClient({
     })}
   </div>
 ```
-
-### Default Messages Only
 
 ### Handling media device permissions
 
