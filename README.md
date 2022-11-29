@@ -2,11 +2,12 @@
 
 @yroun/chat
 
-[https://github.com/yroun/chat-example](https://github.com/yroun/chat-example)
+Git: [https://github.com/yroun/chat-example](https://github.com/yroun/chat-example)
+
+Guide: [https://yroun.notion.site/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://yroun.notion.site/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
 
 ## Table of Contents
 - [Install](#install)
-- [Guide](#guide)
 - [Code Examples](#code-examples)
 - [Components](#components)
   - [Chat Client](#Chat-Client)
@@ -26,10 +27,6 @@
 ```
 npm i @yroun/chat@latest
 ```
-
-## Guide
-
-[https://yroun.notion.site/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a](https://yroun.notion.site/YROUN-OpenAPI-794ae110ffe749f5a049e157128cb24a)
 
 ## Code Examples
 
