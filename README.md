@@ -11,6 +11,7 @@
   - [Send Message](#send-message)
   - [ChatClient preparing RTC with connecting with video/audio HTML elements](#chatclient-preparing-rtc-with-connecting-with-video-or-audio-html-elements)
   - [Handling media device permissions](#handling-media-device-permissions)
+  - [Handling media device permission exceptions](#Handling-media-device-permission-exceptions)
 - [Styling](#styling)
   - [Show Default Messages Only](#show-default-message-only)
   - [YROUNChatMessagesView](#yrounchatmessagesview)
