@@ -36,6 +36,13 @@ const [chatClient] = useState(new YROUNChatClient());
 
 ## Examples
 
+### Show default message only
+```
+const [chatClient] = useState(new YROUNChatClient({
+  filterChatMessageTypes: [YROUNChatMessageType.DEFAULT]
+}));
+```
+
 ### Get ChatClient connected with video/audio HTML elements for RTC
 ```
   const [videoElements] = useState<VideoElementDictionary>({});
@@ -83,6 +90,8 @@ const [chatClient] = useState(new YROUNChatClient());
     })}
   </div>
 ```
+
+### Default Messages Only
 
 ### Handling media device permissions
 
