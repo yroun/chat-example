@@ -2,6 +2,8 @@
 
 @yroun/chat
 
+[https://github.com/yroun/chat-example](https://github.com/yroun/chat-example)
+
 ## Table of Contents
 - [Install](#install)
 - [Guide](#guide)
