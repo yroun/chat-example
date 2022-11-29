@@ -34,7 +34,58 @@ const [chatClient] = useState(new YROUNChatClient());
 <YROUNChatMessagesView chatClient={chatClient} />
 ```
 
-### Permissions of Media Devices
+## Examples
+
+### Connect ChatClient with video/audio HTML elements for RTC
+```
+  const [videoElements] = useState<VideoElementDictionary>({});
+  const [chatClient] = useState(new YROUNChatClient({}));
+  useEffect(() => {
+    chatClient.turnChatOnByUuid(
+      chatUuid,
+      videoElements
+    );
+    // or
+    chatClient.prepareRtc({
+      chatUuid,
+      userUuid,
+      passcode: userApiKey,
+      videoElements,
+      setLoading,
+      ...
+    });
+  }, [])
+  return <div>
+    <video
+      ref={(el: HTMLVideoElement) => (videoElements[userUuid] = el)}
+      autoPlay={true}
+      playsInline={true}
+      muted={true}
+      style={{
+        backgroundColor: "black",
+      }}
+    />
+    {chatClient.getActiveChatParticipants().map((client: any) => {
+      if (userUuid === client.uid) {
+        return <div />;
+      }
+      return (
+        <video
+          ref={(el: HTMLVideoElement) => (videoElements[client.uid] = el)}
+          autoPlay={true}
+          playsInline={true}
+          muted={true}
+          style={{
+            backgroundColor: "black",
+          }}
+        />
+      );
+    })}
+  </div>
+```
+
+### Handling Media Device Permissions
+
 - Interfaces
 ```
 export declare class YROUNChatClient {
