@@ -8,8 +8,8 @@
 - [Code Example](#code-example)
 - [Components](#components)
 - [Usages](#usages)
-  - [Send Message](#send-message)
   - [ChatClient preparing RTC with connecting with video/audio HTML elements](#chatclient-preparing-rtc-with-connecting-with-video-or-audio-html-elements)
+  - [Send Message](#send-message)
   - [Handling media device permissions](#handling-media-device-permissions)
   - [Handling media device permission exceptions](#Handling-media-device-permission-exceptions)
 - [Styling](#styling)
@@ -60,11 +60,6 @@ const [chatClient] = useState(new YROUNChatClient());
 
 ## Usages
 
-### Send Message
-```
-chatClient.sendMessage("Hello");
-```
-
 ### ChatClient preparing RTC with connecting with video or audio HTML elements
 ```
   const [videoElements] = useState<VideoElementDictionary>({});
@@ -111,6 +106,11 @@ chatClient.sendMessage("Hello");
       );
     })}
   </div>
+```
+
+### Send Message
+```
+chatClient.sendMessage("Hello");
 ```
 
 ### Handling media device permissions
