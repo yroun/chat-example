@@ -7,6 +7,9 @@
 - [Guide](#guide)
 - [Code Examples](#code-examples)
 - [Components](#components)
+   - [Chat Client](#Chat-Client)
+   - [Chat Messages View](#Chat-Messages-View)
+   - [Chat RTC Controller View](#Chat-RTC-Controller-View)
 - [Usages](#usages)
   - [ChatClient preparing RTC with connecting with video/audio HTML elements](#chatclient-preparing-rtc-with-connecting-with-video-or-audio-html-elements)
   - [Send Message](#send-message)
@@ -48,14 +51,14 @@ The below are the main components
 const [chatClient] = useState(new YROUNChatClient());
 ```
 
-### Chat RTC Controller
-```
-<YROUNChatRtcControllerView chatClient={chatClient} />
-```
-
-### Chat Chat Messages
+### Chat Messages View
 ```
 <YROUNChatMessagesView chatClient={chatClient} />
+```
+
+### Chat RTC Controller View
+```
+<YROUNChatRtcControllerView chatClient={chatClient} />
 ```
 
 ## Usages
