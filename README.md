@@ -8,7 +8,12 @@
 - [Code Example](#code-example)
 - [Components](#components)
 - [Usages](#usages)
+  - [Send Message](#send-message)
+  -[ChatClient-preparing-RTC-with-connecting-with-video/audio-HTML-elements](#chatclient-preparing-rtc-with-connecting-with-video/audio-html-elements)
 - [Styling](#styling)
+  - [Show Default Messages Only](#show-default-message-only)
+  - [YROUNChatMessagesView](#yrounchatmessagesview)
+  - [YROUNChatRtcControllerView](#yrounchatrtccontrollerview)
 
 ##Install
 ```
@@ -53,36 +58,12 @@ const [chatClient] = useState(new YROUNChatClient());
 
 ## Usages
 
-### ChatClient preparing RTC
-```
-chatClient.prepareRtc({
-  // required
-  chatUuid,
-  userUuid,
-  passcode: userApiKey,
-  videoElements,
-  setLoading,
-  // optional
-  onDisabled,
-  onRtcEnd,
-  onGetUserMedia,
-  onGetUserMediaError
-});
-```
-
-### Show default message only
-```
-const [chatClient] = useState(new YROUNChatClient({
-  filterChatMessageTypes: [YROUNChatMessageType.DEFAULT]
-}));
-```
-
 ### Send Message
 ```
 chatClient.sendMessage("Hello");
 ```
 
-### Get ChatClient connected with video/audio HTML elements for RTC
+### ChatClient preparing RTC with connecting with video/audio HTML elements
 ```
   const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(new YROUNChatClient({}));
@@ -180,6 +161,13 @@ chatClient.connect({
 ```
 
 ## Styling
+
+### Show default message only
+```
+const [chatClient] = useState(new YROUNChatClient({
+  filterChatMessageTypes: [YROUNChatMessageType.DEFAULT]
+}));
+```
 
 ### YROUNChatMessagesView
 ```
