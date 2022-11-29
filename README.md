@@ -36,7 +36,7 @@ const [chatClient] = useState(new YROUNChatClient());
 
 ## Examples
 
-### Connect ChatClient with video/audio HTML elements for RTC
+### Get ChatClient connected with video/audio HTML elements for RTC
 ```
   const [videoElements] = useState<VideoElementDictionary>({});
   const [chatClient] = useState(new YROUNChatClient({}));
