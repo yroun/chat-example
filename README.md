@@ -17,7 +17,7 @@
   - [YROUNChatMessagesView](#yrounchatmessagesview)
   - [YROUNChatRtcControllerView](#yrounchatrtccontrollerview)
 
-##Install
+## Install
 ```
 npm i @yroun/chat@latest
 ```
